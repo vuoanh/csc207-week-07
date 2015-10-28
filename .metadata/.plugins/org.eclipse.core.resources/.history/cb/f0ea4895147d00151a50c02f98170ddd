@@ -1,0 +1,18 @@
+
+public class MergeSort {
+	public static int[] merge(int arrOne[], int arrTwo[]){
+		int merged[] = new int[arrOne.length + arrTwo.length];
+		int pointerOne = 0;
+		int pointerTwo = 0;
+		//	while(pointerOne <= arrOne.length-1 || pointerTwo <= arrTwo.length-1){
+		for(int i = 0; i < merged.length; i++){
+			if(arrOne[pointerOne] <= arrTwo[pointerTwo]){
+				merged[i] = arrOne[pointerOne++];
+				
+			}
+			else{
+				merged[i] = arrTwo[pointerTwo++];
+			}
+		}
+	}
+}

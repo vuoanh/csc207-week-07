@@ -1,0 +1,69 @@
+
+public class QuickSort {
+	public static int[] InsertionSort(int arr[], int left, int right){
+		for(int i = left; i < right-1; i++){
+			for(int j = i+1; j > 0; j--){
+				if(arr[j] < arr[j-1]){
+					swap(arr, j, j-1);
+				} else break;
+			}
+		}
+		return arr;
+	}
+
+	public static int[] QuickSort(int[] arr){
+		return QuickSortHelper(arr, 0, arr.length-1);
+	}
+
+	public static int[] QuickSortHelper(int arr[],int left, int right){
+		if(left + 2 >= right){
+			InsertionSort(arr, left, right);
+		}
+		else {
+			int pivot = 0;
+			int temp;
+			int middle = (left + right)/2;
+			//creating pivot
+			if(arr[right] < arr[left]){
+				swap(arr, right, left);
+			}
+			if(arr[left] > arr[middle]){
+				swap(arr, left, middle);
+			}
+			if(arr[middle] > arr[right]){
+				swap(arr, right, middle);
+			}
+			pivot = arr[middle];
+			swap(arr, middle, right-1); //bc "right" is greater than middle, swap middle to the index before right to create pivot
+			//go through array and swap
+			//i = low && j = high
+			int i = left;
+			int j = right-1;
+			while(i < j){
+				while(arr[++i] < pivot); //increments i until it is untrue (fixes i to an index)
+				while(arr[--j] > pivot); //decrements j until it is untrue (fixes j to an index)
+				if(i >= j){
+					break; //stop the "pointers"
+				}
+				swap(arr, i, j);
+			}
+			QuickSortHelper(arr, left, i-1);
+			QuickSortHelper(arr, i+1, right);
+		}
+		return arr;
+	}
+	public static void swap(int arr[], int indexOne, int indexTwo){
+		int temp = arr[indexOne];
+		arr[indexOne] = arr[indexTwo];
+		arr[indexTwo] = temp;
+	}
+
+	public static void main(String args[]){
+		int[] arrayOne = new int[] {30,3,3,4};
+		QuickSort(arrayOne);
+		for(int i = 0; i<arrayOne.length; i++){
+			System.out.println(arrayOne[i]);
+		}
+	}
+}
+
