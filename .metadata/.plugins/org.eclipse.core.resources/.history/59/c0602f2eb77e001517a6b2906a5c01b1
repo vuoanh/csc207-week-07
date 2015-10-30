@@ -26,10 +26,9 @@ public class MergeSort {
 			outArr[tmpPos++] = arr[rightPos++];
 		}
 		// Copy elements of outArr back to arr
-		arr = outArr;
-		//for (int i = 0; i < ElementNum; i++){
-		//	arr[i] = outArr[i];
-		//}
+		for (int i = 0; i < ElementNum; i++){
+			arr[i] = outArr[i];
+		}
 	}
 	/* Helper mergeSort for mergeSort method. 
 	 * Recursively devide the array into left and right sub arrays
