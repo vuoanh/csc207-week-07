@@ -34,21 +34,15 @@ public class MergeSort {
 		}
 	}
 	
-	public static void mergeSortHelper(int arr[], int lower, int upper, int[] tmpArr){
+	public static int[] mergeSort(int arr[], int lower, int upper, int tmpArray[]){
 		int length = arr.length;
-		if (upper <= lower) {
-			return;
+		int[] tmpArr = new int[length];
+		if (lower == upper) {
+			return arr;
 		} else {
-			int mid = lower + (upper - lower) /2;
-			mergeSortHelper(arr, lower, mid,tmpArr);
-			mergeSortHelper(arr, mid+1, upper, tmpArr);
-			merge(arr, lower, mid, tmpArr);
+			merge(arr, lower, upper, tmpArr);
 			}
 		}
-	public static int[] mergeSort(int arr[]){
-		int[] tmpArr = new int[arr.length];
-		mergeSortHelper(arr, 0, arr.length-1, tmpArr);
-		return tmpArr;
 	}
 	public static void main(String args[]){
 		Random rdom = ThreadLocalRandom.current();
@@ -58,7 +52,7 @@ public class MergeSort {
 			arrayOne[i] = rdom.nextInt(50);
 		}
 		System.out.println(Arrays.toString(arrayOne));
-		mergeSort(arrayOne);
+		MergeSort(arrayOne);
 		System.out.println(Arrays.toString(arrayOne));
 	}
 	

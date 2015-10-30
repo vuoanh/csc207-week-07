@@ -36,13 +36,13 @@ public class MergeSort {
 	
 	public static void mergeSortHelper(int arr[], int lower, int upper, int[] tmpArr){
 		int length = arr.length;
-		if (upper <= lower) {
+		int mid = lower + (upper - lower) /2;
+		if (lower == upper) {
 			return;
 		} else {
-			int mid = lower + (upper - lower) /2;
-			mergeSortHelper(arr, lower, mid,tmpArr);
-			mergeSortHelper(arr, mid+1, upper, tmpArr);
 			merge(arr, lower, mid, tmpArr);
+			mergeSortHelper(arr, mid +1, upper, tmpArr);
+			mergeSortHelper(arr, lower, mid, upper);
 			}
 		}
 	public static int[] mergeSort(int arr[]){
