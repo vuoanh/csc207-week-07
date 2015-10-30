@@ -43,10 +43,8 @@ public class QuickSort {
 			int i = left;
 			int j = right;
 			while(i < j){
-				//increments i until it is untrue (fixes i to an index)
-				while(arr[++i] < pivot); 
-				//decrements j until it is untrue (fixes j to an index)
-				while(arr[--j] > pivot); 
+				while(arr[++i] < pivot); //increments i until it is untrue (fixes i to an index)
+				while(arr[--j] > pivot); //decrements j until it is untrue (fixes j to an index)
 				if(i >= j){
 					break; //stop the "pointers"
 				}

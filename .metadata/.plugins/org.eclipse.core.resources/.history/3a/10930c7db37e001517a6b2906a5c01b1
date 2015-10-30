@@ -3,13 +3,10 @@ import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class MergeSort {
-	/* helper method help merge two sub arrays and put the merged array into outArr */
 	public static void merge(int[] arr, int leftPos, int rightPos, int outArr[], int rightEnd){
 		int ElementNum = rightEnd - leftPos +1;
 		int leftEnd = rightPos - 1;
 		int tmpPos = leftPos;
-		// Compare first element of each of left and right sub arrays.
-		// Copy the smaller element to outArr
 		while(leftPos <= leftEnd && rightPos <= rightEnd){
 			if (arr[leftPos] < arr[rightPos]){
 				outArr[tmpPos++] = arr[leftPos++];
@@ -18,22 +15,17 @@ public class MergeSort {
 				outArr[tmpPos++] = arr[rightPos++];
 			}
 		}
-		// if right sub array is out of element
 		while(leftPos <= leftEnd){
 			outArr[tmpPos++] = arr[leftPos++];
 		}
 		while(rightPos <= rightEnd){
 			outArr[tmpPos++] = arr[rightPos++];
 		}
-		// Copy elements of outArr back to arr
 		for (int i = 0; i < ElementNum; i++){
 			arr[i] = outArr[i];
 		}
 	}
-	/* Helper mergeSort for mergeSort method. 
-	 * Recursively devide the array into left and right sub arrays
-	 * Then, recursively merge left and right sub arrays by using merge method
-	 *  */
+
 	public static void mergeSortHelper(int arr[], int lower, int upper, int[] tmpArr){
 		if (upper > lower) {
 			int mid = lower + (upper - lower) /2;
@@ -47,4 +39,16 @@ public class MergeSort {
 		mergeSortHelper(arr, 0, arr.length-1, tmpArr);
 		return tmpArr;
 	}
+	public static void main(String args[]){
+		Random rdom = ThreadLocalRandom.current();
+		int length = rdom.nextInt(4);
+		int[] arrayOne = new int[length];
+		for(int i = 0; i < length; i++){
+			arrayOne[i] = rdom.nextInt(50);
+		}
+		System.out.println(Arrays.toString(arrayOne));
+		mergeSort(arrayOne);
+		System.out.println(Arrays.toString(arrayOne));
+	}
+
 }
